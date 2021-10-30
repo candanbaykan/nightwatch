@@ -1,14 +1,15 @@
 package com.ct.nightwatch.webapi.restcontroller.api.v1;
 
 import com.ct.nightwatch.webapi.service.DemoService;
+import com.ct.nightwatch.webapi.service.dto.DemoRequest;
 import com.ct.nightwatch.webapi.service.dto.DemoSummary;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @Controller
@@ -22,5 +23,15 @@ public class DemoController {
     @GetMapping
     public ResponseEntity<List<DemoSummary>> getAll() {
         return ResponseEntity.ok(demoService.findAll());
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> post(@RequestBody DemoRequest demoRequest) {
+        Long id = demoService.save(demoRequest);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(id)
+                .toUri();
+        return ResponseEntity.created(uri).build();
     }
 }

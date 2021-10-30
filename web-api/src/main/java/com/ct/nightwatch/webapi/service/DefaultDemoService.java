@@ -1,6 +1,7 @@
 package com.ct.nightwatch.webapi.service;
 
 import com.ct.nightwatch.webapi.repository.DemoRepository;
+import com.ct.nightwatch.webapi.service.dto.DemoRequest;
 import com.ct.nightwatch.webapi.service.dto.DemoSummary;
 import com.ct.nightwatch.webapi.service.mapper.DemoMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,4 +23,11 @@ public class DefaultDemoService implements DemoService {
                 .map(demoMapper::toSummary)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Long save(DemoRequest demoRequest) {
+        return demoRepository.save(demoMapper.toEntity(demoRequest)).getId();
+    }
+
+
 }
