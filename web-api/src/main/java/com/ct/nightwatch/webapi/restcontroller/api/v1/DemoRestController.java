@@ -5,24 +5,32 @@ import com.ct.nightwatch.webapi.service.dto.DemoRequest;
 import com.ct.nightwatch.webapi.service.dto.DemoSummary;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
 
-@Controller
+
+// The purpose of this endpoint is to test infrastructure.
+@RestController
 @RequestMapping("/api/v1/demos")
 @CrossOrigin("*")
 @RequiredArgsConstructor
-public class DemoController {
+public class DemoRestController {
 
     private final DemoService demoService;
 
     @GetMapping
     public ResponseEntity<List<DemoSummary>> getAll() {
         return ResponseEntity.ok(demoService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DemoSummary> getById(@PathVariable Long id) {
+        return demoService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -34,4 +42,5 @@ public class DemoController {
                 .toUri();
         return ResponseEntity.created(uri).build();
     }
+
 }
