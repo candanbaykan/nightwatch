@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,6 +23,12 @@ public class DefaultDemoService implements DemoService {
         return demoRepository.findAll().stream()
                 .map(demoMapper::toSummary)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<DemoSummary> findById(Long id) {
+        return demoRepository.findById(id)
+                .map(demoMapper::toSummary);
     }
 
     @Override

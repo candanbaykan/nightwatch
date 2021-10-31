@@ -20,6 +20,8 @@ services:
       context: ./web-api
     ports:
       - "8080:8080"
+    volumes:
+      - nightwatch-maven-repository:/root/.m2
     depends_on:
       postgres:
         condition: service_healthy
@@ -32,3 +34,4 @@ services:
 
 volumes:
   nightwatch-postgres-data:
+  nightwatch-maven-repository:
