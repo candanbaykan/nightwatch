@@ -14,4 +14,12 @@
 
         <comment>Created a demo table for testing infrastructure</comment>
     </changeSet>
+    <changeSet id="2" author="candanbaykan">
+        <sqlFile path="2_create_initial_tables.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+
+        <comment>Created initial tables</comment>
+    </changeSet>
 </databaseChangeLog>
