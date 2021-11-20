@@ -22,4 +22,12 @@
 
         <comment>Created initial tables</comment>
     </changeSet>
+    <changeSet id="3" author="candanbaykan">
+        <sqlFile path="3_create_initial_constraints.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+
+        <comment>Created initial constraints</comment>
+    </changeSet>
 </databaseChangeLog>
