@@ -29,7 +29,7 @@ public class Watch {
     private Long id;
 
     @NotNull
-    @Column(name = "id")
+    @Column(name = "date")
     private Date date;
 
     @NotNull
