@@ -10,6 +10,7 @@ import com.ct.nightwatch.webapi.service.mapper.qualifier.IdToRank;
 import com.ct.nightwatch.webapi.service.mapper.qualifier.IdToUser;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 
 @Mapper(uses = {
         DepartmentMapper.class, RankMapper.class, UserMapper.class,
@@ -24,37 +25,41 @@ public interface EmployeeMapper {
     @IdToEmployee
     Employee toEntity(Long id);
 
-    @Mapping(
-            source = "employeeRequest." + EmployeeRequest.Fields.departmentId,
-            target = Employee.Fields.department,
-            qualifiedBy = IdToDepartment.class
-    )
-    @Mapping(
-            source = "employeeRequest." + EmployeeRequest.Fields.rankId,
-            target = Employee.Fields.rank,
-            qualifiedBy = IdToRank.class
-    )
-    @Mapping(
-            source = "employeeRequest." + EmployeeRequest.Fields.userId,
-            target = Employee.Fields.user,
-            qualifiedBy = IdToUser.class
-    )
+    @Mappings({
+            @Mapping(
+                    source = "employeeRequest." + EmployeeRequest.Fields.departmentId,
+                    target = Employee.Fields.department,
+                    qualifiedBy = IdToDepartment.class
+            ),
+            @Mapping(
+                    source = "employeeRequest." + EmployeeRequest.Fields.rankId,
+                    target = Employee.Fields.rank,
+                    qualifiedBy = IdToRank.class
+            ),
+            @Mapping(
+                    source = "employeeRequest." + EmployeeRequest.Fields.userId,
+                    target = Employee.Fields.user,
+                    qualifiedBy = IdToUser.class
+            )
+    })
     Employee toEntity(EmployeeRequest employeeRequest);
 
-    @Mapping(
-            source = "employeeRequest." + EmployeeRequest.Fields.departmentId,
-            target = Employee.Fields.department,
-            qualifiedBy = IdToDepartment.class
-    )
-    @Mapping(
-            source = "employeeRequest." + EmployeeRequest.Fields.rankId,
-            target = Employee.Fields.rank,
-            qualifiedBy = IdToRank.class
-    )
-    @Mapping(
-            source = "employeeRequest." + EmployeeRequest.Fields.userId,
-            target = Employee.Fields.user,
-            qualifiedBy = IdToUser.class
-    )
+    @Mappings({
+            @Mapping(
+                    source = "employeeRequest." + EmployeeRequest.Fields.departmentId,
+                    target = Employee.Fields.department,
+                    qualifiedBy = IdToDepartment.class
+            ),
+            @Mapping(
+                    source = "employeeRequest." + EmployeeRequest.Fields.rankId,
+                    target = Employee.Fields.rank,
+                    qualifiedBy = IdToRank.class
+            ),
+            @Mapping(
+                    source = "employeeRequest." + EmployeeRequest.Fields.userId,
+                    target = Employee.Fields.user,
+                    qualifiedBy = IdToUser.class
+            )
+    })
     Employee toEntity(Long id, EmployeeRequest employeeRequest);
 }
