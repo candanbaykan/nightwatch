@@ -6,9 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RoleSummary {
+
     private Long id;
     private String name;
 
     public RoleSummary() {
     }
+
 }

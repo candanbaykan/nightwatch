@@ -8,6 +8,7 @@ import java.util.List;
 @Getter
 @Setter
 public class EmployeeDetails {
+
     private Long id;
     private String firstName;
     private String middleName;
@@ -23,4 +24,5 @@ public class EmployeeDetails {
 
     public EmployeeDetails() {
     }
+
 }

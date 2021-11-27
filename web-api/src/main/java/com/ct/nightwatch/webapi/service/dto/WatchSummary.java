@@ -8,9 +8,11 @@ import java.sql.Date;
 @Getter
 @Setter
 public class WatchSummary {
+
     private Long id;
     private Date date;
 
     public WatchSummary() {
     }
+
 }

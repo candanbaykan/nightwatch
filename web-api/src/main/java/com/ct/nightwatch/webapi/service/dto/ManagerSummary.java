@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ManagerSummary {
+
     private Long id;
     private String firstName;
     private String middleName;
@@ -15,4 +16,5 @@ public class ManagerSummary {
 
     public ManagerSummary() {
     }
+
 }

@@ -6,8 +6,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class DemoSummary {
+
     private Long id;
     private String text;
+
+    public DemoSummary() {
+    }
+
 }

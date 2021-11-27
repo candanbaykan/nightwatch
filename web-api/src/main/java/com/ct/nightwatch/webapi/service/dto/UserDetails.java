@@ -6,10 +6,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserDetails {
+
     private Long id;
     private String username;
     private RoleSummary role;
 
     public UserDetails() {
     }
+
 }
