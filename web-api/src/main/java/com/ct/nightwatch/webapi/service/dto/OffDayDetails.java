@@ -8,6 +8,7 @@ import java.sql.Date;
 @Getter
 @Setter
 public class OffDayDetails {
+
     private Long id;
     private Date begin;
     private Date end;
@@ -15,4 +16,5 @@ public class OffDayDetails {
 
     public OffDayDetails() {
     }
+
 }

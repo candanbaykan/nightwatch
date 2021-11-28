@@ -8,6 +8,7 @@ import java.util.List;
 @Getter
 @Setter
 public class ManagerDetails {
+
     private Long id;
     private String firstName;
     private String middleName;
@@ -19,4 +20,5 @@ public class ManagerDetails {
 
     public ManagerDetails() {
     }
+
 }

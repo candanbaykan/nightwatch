@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RankSummary {
+
     private Long id;
     private String name;
     private Integer mandatoryDay;
@@ -13,4 +14,5 @@ public class RankSummary {
 
     public RankSummary() {
     }
+
 }

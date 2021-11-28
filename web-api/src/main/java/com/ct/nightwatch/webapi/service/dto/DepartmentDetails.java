@@ -8,6 +8,7 @@ import java.util.List;
 @Getter
 @Setter
 public class DepartmentDetails {
+
     private Long id;
     private String name;
     private Integer dailyWatch;
@@ -16,4 +17,5 @@ public class DepartmentDetails {
 
     public DepartmentDetails() {
     }
+
 }

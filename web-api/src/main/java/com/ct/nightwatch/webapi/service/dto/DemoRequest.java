@@ -6,7 +6,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class DemoRequest {
+
     private String text;
+
+    public DemoRequest() {
+    }
+
 }
