@@ -1,4 +1,4 @@
-package com.ct.nightwatch.webapi.service.mapper.qualifier;
+package com.ct.nightwatch.webapi.service.mapper.mapstruct.qualifier;
 
 import org.mapstruct.Qualifier;
 
@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 @Qualifier
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.CLASS)
-public @interface IdToPreferredDay {
+public @interface IdToRank {
 }
