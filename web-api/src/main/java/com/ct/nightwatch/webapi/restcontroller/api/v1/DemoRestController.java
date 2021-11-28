@@ -3,7 +3,6 @@ package com.ct.nightwatch.webapi.restcontroller.api.v1;
 import com.ct.nightwatch.webapi.service.DemoService;
 import com.ct.nightwatch.webapi.service.dto.DemoRequest;
 import com.ct.nightwatch.webapi.service.dto.DemoSummary;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -16,10 +15,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/demos")
 @CrossOrigin("*")
-@RequiredArgsConstructor
 public class DemoRestController {
 
     private final DemoService demoService;
+
+    public DemoRestController(DemoService demoService) {
+        this.demoService = demoService;
+    }
 
     @GetMapping
     public ResponseEntity<List<DemoSummary>> getAll() {

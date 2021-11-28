@@ -4,7 +4,6 @@ import com.ct.nightwatch.webapi.repository.DemoRepository;
 import com.ct.nightwatch.webapi.service.dto.DemoRequest;
 import com.ct.nightwatch.webapi.service.dto.DemoSummary;
 import com.ct.nightwatch.webapi.service.mapper.DemoMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +11,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class DefaultDemoService implements DemoService {
 
     private final DemoRepository demoRepository;
     private final DemoMapper demoMapper;
+
+    public DefaultDemoService(DemoRepository demoRepository, DemoMapper demoMapper) {
+        this.demoRepository = demoRepository;
+        this.demoMapper = demoMapper;
+    }
 
     @Override
     public List<DemoSummary> findAll() {
