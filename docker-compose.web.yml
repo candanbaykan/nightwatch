@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  web-api:
+    image: maven:3-amazoncorretto-17
+    working_dir: /root/web-api
+    entrypoint: bash -c "mvn clean package -Dmaven.test.skip=true && java -jar target/web-api-0.0.1-SNAPSHOT.jar"
+    ports:
+      - "8080:8080"
+    volumes:
+      - nightwatch-maven-repository:/root/.m2
+      - ./web-api:/root/web-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      JDBC_URL: ${DB_URL}
+      JDBC_USERNAME: ${DB_USER}
+      JDBC_PASSWORD: ${DB_PASSWORD}
+
+volumes:
+  nightwatch-maven-repository:
