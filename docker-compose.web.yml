@@ -9,7 +9,8 @@ services:
       - "8080:8080"
     volumes:
       - nightwatch-maven-repository:/root/.m2
-      - ./web-api:/root/web-api
+      - ./web-api/pom.xml:/root/web-api/pom.xml
+      - ./web-api/src:/root/web-api/src
     depends_on:
       postgres:
         condition: service_healthy
