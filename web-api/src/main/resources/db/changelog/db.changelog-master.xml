@@ -30,4 +30,12 @@
 
         <comment>Created initial constraints</comment>
     </changeSet>
+    <changeSet id="4" author="candanbaykan">
+        <sqlFile path="4_create_roles_and_admin.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+
+        <comment>Created initial constraints</comment>
+    </changeSet>
 </databaseChangeLog>

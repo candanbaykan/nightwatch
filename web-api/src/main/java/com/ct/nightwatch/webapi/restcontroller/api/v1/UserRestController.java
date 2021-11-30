@@ -46,7 +46,7 @@ public class UserRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDetails> putById(@PathVariable Long id, UserRequest userRequest) {
+    public ResponseEntity<UserDetails> putById(@PathVariable Long id, @RequestBody UserRequest userRequest) {
         return userService.updateById(id, userRequest)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
