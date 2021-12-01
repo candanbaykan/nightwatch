@@ -1,11 +1,11 @@
 package com.ct.nightwatch.webapi.restcontroller.api.v1;
 
+import com.ct.nightwatch.webapi.restcontroller.api.utility.ApiUtility;
 import com.ct.nightwatch.webapi.service.DemoService;
 import com.ct.nightwatch.webapi.service.dto.DemoRequest;
 import com.ct.nightwatch.webapi.service.dto.DemoSummary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
@@ -38,10 +38,7 @@ public class DemoRestController {
     @PostMapping
     public ResponseEntity<Void> post(@RequestBody DemoRequest demoRequest) {
         Long id = demoService.save(demoRequest);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(id)
-                .toUri();
+        URI uri = ApiUtility.createLocationUri(id);
         return ResponseEntity.created(uri).build();
     }
 

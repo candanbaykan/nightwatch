@@ -1,5 +1,6 @@
 package com.ct.nightwatch.webapi.restcontroller.api.v1;
 
+import com.ct.nightwatch.webapi.restcontroller.api.utility.ApiUtility;
 import com.ct.nightwatch.webapi.service.UserService;
 import com.ct.nightwatch.webapi.service.dto.UserDetails;
 import com.ct.nightwatch.webapi.service.dto.UserRequest;
@@ -37,11 +38,7 @@ public class UserRestController {
     @PostMapping
     public ResponseEntity<Void> post(@RequestBody UserRequest userRequest) {
         Long id = userService.save(userRequest);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(id)
-                .toUri();
-
+        URI uri = ApiUtility.createLocationUri(id);
         return ResponseEntity.created(uri).build();
     }
 
