@@ -35,7 +35,7 @@ public class DefaultDepartmentService implements DepartmentService {
 
     @Override
     public Optional<DepartmentDetails> findById(Long id) {
-        return departmentRepository.findById(id)
+        return departmentRepository.findDetailsById(id)
                 .map(departmentMapper::toDetails);
     }
 
@@ -47,7 +47,7 @@ public class DefaultDepartmentService implements DepartmentService {
     @Override
     @Transactional
     public Optional<DepartmentDetails> updateById(Long id, DepartmentRequest departmentRequest) {
-        if (departmentRepository.existsById(id))
+        if (!departmentRepository.existsById(id))
             throw new EntityNotFoundException(id, Department.class);
 
         departmentRepository.save(departmentMapper.toEntity(id, departmentRequest));
