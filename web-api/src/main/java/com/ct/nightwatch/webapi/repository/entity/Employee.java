@@ -20,10 +20,7 @@ import java.util.List;
                 attributeNodes = {
                         @NamedAttributeNode(Employee.Fields.department),
                         @NamedAttributeNode(Employee.Fields.rank),
-                        @NamedAttributeNode(Employee.Fields.user),
-                        @NamedAttributeNode(Employee.Fields.offDays),
-                        @NamedAttributeNode(Employee.Fields.preferredDays),
-                        @NamedAttributeNode(Employee.Fields.watches)
+                        @NamedAttributeNode(Employee.Fields.user)
                 }
         )
 })

@@ -6,7 +6,9 @@ import com.ct.nightwatch.webapi.service.dto.EmployeeRequest;
 import com.ct.nightwatch.webapi.service.mapper.mapstruct.qualifier.IdToDepartment;
 import com.ct.nightwatch.webapi.service.mapper.mapstruct.qualifier.IdToRank;
 import com.ct.nightwatch.webapi.service.mapper.mapstruct.qualifier.IdToUser;
-import com.ct.nightwatch.webapi.service.mapper.mapstruct.simple.*;
+import com.ct.nightwatch.webapi.service.mapper.mapstruct.simple.SimpleDepartmentMapper;
+import com.ct.nightwatch.webapi.service.mapper.mapstruct.simple.SimpleRankMapper;
+import com.ct.nightwatch.webapi.service.mapper.mapstruct.simple.SimpleUserMapper;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,8 +17,8 @@ import org.mapstruct.Mappings;
 // Complex mappers can depend on simple mappers, but they cannot depend on other complex mappers
 @Mapper(
         uses = {
-                SimpleDepartmentMapper.class, SimpleRankMapper.class, SimpleUserMapper.class,
-                SimpleOffDayMapper.class, SimplePreferredDayMapper.class, SimpleWatchMapper.class},
+                SimpleDepartmentMapper.class, SimpleRankMapper.class, SimpleUserMapper.class
+        },
         injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
 public interface ComplexEmployeeMapper {

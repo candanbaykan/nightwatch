@@ -18,9 +18,6 @@ public class EmployeeDetails {
     private DepartmentSummary department;
     private RankSummary rank;
     private UserSummary user;
-    private List<OffDaySummary> offDays;
-    private List<PreferredDaySummary> preferredDays;
-    private List<WatchSummary> watches;
 
     public EmployeeDetails() {
     }
