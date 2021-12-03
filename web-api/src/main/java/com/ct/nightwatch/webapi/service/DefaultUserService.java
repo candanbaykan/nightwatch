@@ -51,6 +51,13 @@ public class DefaultUserService implements UserService {
         if (!userRepository.existsById(id))
             throw new EntityNotFoundException(id, User.class);
 
+        userRequest.setPassword(
+                Optional.ofNullable(userRequest.getPassword())
+                        .orElse(userRepository.findById(id)
+                                .map(User::getPassword)
+                                .orElseThrow(() -> new EntityNotFoundException(id, User.class)))
+        );
+
         userRepository.save(userMapper.toEntity(id, userRequest));
         return findById(id);
     }
