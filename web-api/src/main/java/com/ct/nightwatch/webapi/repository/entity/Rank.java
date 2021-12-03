@@ -36,4 +36,5 @@ public class Rank {
 
     public Rank() {
     }
+
 }
