@@ -9,7 +9,6 @@ import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.DepartmentMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,13 +44,11 @@ public class DefaultDepartmentService implements DepartmentService {
     }
 
     @Override
-    @Transactional
-    public Optional<DepartmentDetails> updateById(Long id, DepartmentRequest departmentRequest) {
+    public void updateById(Long id, DepartmentRequest departmentRequest) {
         if (!departmentRepository.existsById(id))
             throw new EntityNotFoundException(id, Department.class);
 
         departmentRepository.save(departmentMapper.toEntity(id, departmentRequest));
-        return findById(id);
     }
 
     @Override

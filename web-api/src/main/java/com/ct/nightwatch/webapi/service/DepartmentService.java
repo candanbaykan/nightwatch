@@ -15,7 +15,7 @@ public interface DepartmentService {
 
     Long save(DepartmentRequest departmentRequest);
 
-    Optional<DepartmentDetails> updateById(Long id, DepartmentRequest departmentRequest);
+    void updateById(Long id, DepartmentRequest departmentRequest);
 
     void deleteById(Long id);
 

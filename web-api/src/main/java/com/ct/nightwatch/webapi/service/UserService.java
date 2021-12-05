@@ -15,7 +15,7 @@ public interface UserService {
 
     Long save(UserRequest userRequest);
 
-    Optional<UserDetails> updateById(Long id, UserRequest userRequest);
+    void updateById(Long id, UserRequest userRequest);
 
     void deleteById(Long id);
 

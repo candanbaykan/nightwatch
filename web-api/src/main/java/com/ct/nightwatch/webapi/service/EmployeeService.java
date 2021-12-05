@@ -15,7 +15,7 @@ public interface EmployeeService {
 
     Long save(EmployeeRequest employeeRequest);
 
-    Optional<EmployeeDetails> updateById(Long id, EmployeeRequest employeeRequest);
+    void updateById(Long id, EmployeeRequest employeeRequest);
 
     void deleteById(Long id);
 

@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DemoService {
+
     List<DemoSummary> findAll();
+
     Optional<DemoSummary> findById(Long id);
+
     Long save(DemoRequest demoRequest);
+
 }

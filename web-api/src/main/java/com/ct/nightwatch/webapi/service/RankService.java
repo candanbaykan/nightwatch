@@ -14,7 +14,7 @@ public interface RankService {
 
     Long save(RankRequest rankRequest);
 
-    Optional<RankSummary> updateById(Long id, RankRequest rankRequest);
+    void updateById(Long id, RankRequest rankRequest);
 
     void deleteById(Long id);
 

@@ -9,7 +9,6 @@ import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.ManagerMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,13 +44,11 @@ public class DefaultManagerService implements ManagerService {
     }
 
     @Override
-    @Transactional
-    public Optional<ManagerDetails> updateById(Long id, ManagerRequest managerRequest) {
+    public void updateById(Long id, ManagerRequest managerRequest) {
         if (!managerRepository.existsById(id))
             throw new EntityNotFoundException(id, Manager.class);
 
         managerRepository.save(managerMapper.toEntity(id, managerRequest));
-        return findById(id);
     }
 
     @Override

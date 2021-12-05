@@ -42,13 +42,9 @@ public class EmployeeRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EmployeeDetails> putById(
-            @PathVariable Long id,
-            @RequestBody EmployeeRequest employeeRequest) {
-
-        return employeeService.updateById(id, employeeRequest)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Void> putById(@PathVariable Long id, @RequestBody EmployeeRequest employeeRequest) {
+        employeeService.updateById(id, employeeRequest);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")

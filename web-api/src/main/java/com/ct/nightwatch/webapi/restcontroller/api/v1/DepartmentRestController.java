@@ -42,10 +42,9 @@ public class DepartmentRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DepartmentDetails> putById(@PathVariable Long id, @RequestBody DepartmentRequest departmentRequest) {
-        return departmentService.updateById(id, departmentRequest)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Void> putById(@PathVariable Long id, @RequestBody DepartmentRequest departmentRequest) {
+        departmentService.updateById(id, departmentRequest);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")

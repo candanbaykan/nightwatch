@@ -9,7 +9,6 @@ import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.UserMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,8 +45,7 @@ public class DefaultUserService implements UserService {
 
 
     @Override
-    @Transactional
-    public Optional<UserDetails> updateById(Long id, UserRequest userRequest) {
+    public void updateById(Long id, UserRequest userRequest) {
         if (!userRepository.existsById(id))
             throw new EntityNotFoundException(id, User.class);
 
@@ -59,7 +57,6 @@ public class DefaultUserService implements UserService {
         );
 
         userRepository.save(userMapper.toEntity(id, userRequest));
-        return findById(id);
     }
 
     @Override

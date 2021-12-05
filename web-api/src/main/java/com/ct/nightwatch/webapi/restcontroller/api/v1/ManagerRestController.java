@@ -42,10 +42,9 @@ public class ManagerRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ManagerDetails> putById(@PathVariable Long id, @RequestBody ManagerRequest managerRequest) {
-        return managerService.updateById(id, managerRequest)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Void> putById(@PathVariable Long id, @RequestBody ManagerRequest managerRequest) {
+        managerService.updateById(id, managerRequest);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")

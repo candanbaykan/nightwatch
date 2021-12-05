@@ -15,7 +15,7 @@ public interface ManagerService {
 
     Long save(ManagerRequest managerRequest);
 
-    Optional<ManagerDetails> updateById(Long id, ManagerRequest managerRequest);
+    void updateById(Long id, ManagerRequest managerRequest);
 
     void deleteById(Long id);
 

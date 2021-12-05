@@ -7,7 +7,6 @@ import com.ct.nightwatch.webapi.service.dto.UserRequest;
 import com.ct.nightwatch.webapi.service.dto.UserSummary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
@@ -43,10 +42,9 @@ public class UserRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDetails> putById(@PathVariable Long id, @RequestBody UserRequest userRequest) {
-        return userService.updateById(id, userRequest)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Void> putById(@PathVariable Long id, @RequestBody UserRequest userRequest) {
+        userService.updateById(id, userRequest);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")

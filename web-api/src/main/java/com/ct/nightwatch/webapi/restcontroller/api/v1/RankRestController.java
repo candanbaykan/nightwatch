@@ -41,10 +41,9 @@ public class RankRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RankSummary> putById(@PathVariable Long id, @RequestBody RankRequest rankRequest) {
-        return rankService.updateById(id, rankRequest)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Void> putById(@PathVariable Long id, @RequestBody RankRequest rankRequest) {
+        rankService.updateById(id, rankRequest);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
