@@ -1,7 +1,8 @@
-package com.ct.nightwatch.webapi.service;
+package com.ct.nightwatch.webapi.service.implementation;
 
 import com.ct.nightwatch.webapi.repository.DepartmentRepository;
 import com.ct.nightwatch.webapi.repository.entity.Department;
+import com.ct.nightwatch.webapi.service.DepartmentService;
 import com.ct.nightwatch.webapi.service.dto.DepartmentDetails;
 import com.ct.nightwatch.webapi.service.dto.DepartmentRequest;
 import com.ct.nightwatch.webapi.service.dto.DepartmentSummary;
@@ -40,7 +41,8 @@ public class DefaultDepartmentService implements DepartmentService {
 
     @Override
     public Long save(DepartmentRequest departmentRequest) {
-        return departmentRepository.save(departmentMapper.toEntity(departmentRequest)).getId();
+        Department department = departmentMapper.toEntity(departmentRequest);
+        return departmentRepository.save(department).getId();
     }
 
     @Override
@@ -48,7 +50,8 @@ public class DefaultDepartmentService implements DepartmentService {
         if (!departmentRepository.existsById(id))
             throw new EntityNotFoundException(id, Department.class);
 
-        departmentRepository.save(departmentMapper.toEntity(id, departmentRequest));
+        Department department = departmentMapper.toEntity(id, departmentRequest);
+        departmentRepository.save(department);
     }
 
     @Override

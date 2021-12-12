@@ -1,7 +1,8 @@
-package com.ct.nightwatch.webapi.service;
+package com.ct.nightwatch.webapi.service.implementation;
 
 import com.ct.nightwatch.webapi.repository.UserRepository;
 import com.ct.nightwatch.webapi.repository.entity.User;
+import com.ct.nightwatch.webapi.service.UserService;
 import com.ct.nightwatch.webapi.service.dto.UserDetails;
 import com.ct.nightwatch.webapi.service.dto.UserRequest;
 import com.ct.nightwatch.webapi.service.dto.UserSummary;
@@ -40,7 +41,8 @@ public class DefaultUserService implements UserService {
 
     @Override
     public Long save(UserRequest userRequest) {
-        return userRepository.save(userMapper.toEntity(userRequest)).getId();
+        User user = userMapper.toEntity(userRequest);
+        return userRepository.save(user).getId();
     }
 
 
@@ -56,7 +58,8 @@ public class DefaultUserService implements UserService {
                                 .orElseThrow(() -> new EntityNotFoundException(id, User.class)))
         );
 
-        userRepository.save(userMapper.toEntity(id, userRequest));
+        User user = userMapper.toEntity(id, userRequest);
+        userRepository.save(user);
     }
 
     @Override

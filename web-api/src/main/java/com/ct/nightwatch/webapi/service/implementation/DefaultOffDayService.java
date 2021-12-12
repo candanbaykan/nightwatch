@@ -1,7 +1,8 @@
-package com.ct.nightwatch.webapi.service;
+package com.ct.nightwatch.webapi.service.implementation;
 
 import com.ct.nightwatch.webapi.repository.OffDayRepository;
 import com.ct.nightwatch.webapi.repository.entity.OffDay;
+import com.ct.nightwatch.webapi.service.OffDayService;
 import com.ct.nightwatch.webapi.service.dto.OffDayDetails;
 import com.ct.nightwatch.webapi.service.dto.OffDayRequest;
 import com.ct.nightwatch.webapi.service.dto.OffDaySummary;
@@ -40,7 +41,8 @@ public class DefaultOffDayService implements OffDayService {
 
     @Override
     public Long save(OffDayRequest offDayRequest) {
-        return offDayRepository.save(offDayMapper.toEntity(offDayRequest)).getId();
+        OffDay offDay = offDayMapper.toEntity(offDayRequest);
+        return offDayRepository.save(offDay).getId();
     }
 
     @Override
@@ -48,7 +50,8 @@ public class DefaultOffDayService implements OffDayService {
         if (!offDayRepository.existsById(id))
             throw new EntityNotFoundException(id, OffDay.class);
 
-        offDayRepository.save(offDayMapper.toEntity(id, offDayRequest));
+        OffDay offDay = offDayMapper.toEntity(id, offDayRequest);
+        offDayRepository.save(offDay);
     }
 
     @Override

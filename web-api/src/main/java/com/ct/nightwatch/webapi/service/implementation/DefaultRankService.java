@@ -1,7 +1,8 @@
-package com.ct.nightwatch.webapi.service;
+package com.ct.nightwatch.webapi.service.implementation;
 
 import com.ct.nightwatch.webapi.repository.RankRepository;
 import com.ct.nightwatch.webapi.repository.entity.Rank;
+import com.ct.nightwatch.webapi.service.RankService;
 import com.ct.nightwatch.webapi.service.dto.RankRequest;
 import com.ct.nightwatch.webapi.service.dto.RankSummary;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
@@ -39,7 +40,8 @@ public class DefaultRankService implements RankService {
 
     @Override
     public Long save(RankRequest rankRequest) {
-        return rankRepository.save(rankMapper.toEntity(rankRequest)).getId();
+        Rank rank = rankMapper.toEntity(rankRequest);
+        return rankRepository.save(rank).getId();
     }
 
     @Override
@@ -47,7 +49,8 @@ public class DefaultRankService implements RankService {
         if (!rankRepository.existsById(id))
             throw new EntityNotFoundException(id, Rank.class);
 
-        rankRepository.save(rankMapper.toEntity(id, rankRequest));
+        Rank rank = rankMapper.toEntity(id, rankRequest);
+        rankRepository.save(rank);
     }
 
     @Override

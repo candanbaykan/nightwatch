@@ -1,7 +1,8 @@
-package com.ct.nightwatch.webapi.service;
+package com.ct.nightwatch.webapi.service.implementation;
 
 import com.ct.nightwatch.webapi.repository.EmployeeRepository;
 import com.ct.nightwatch.webapi.repository.entity.Employee;
+import com.ct.nightwatch.webapi.service.EmployeeService;
 import com.ct.nightwatch.webapi.service.dto.EmployeeDetails;
 import com.ct.nightwatch.webapi.service.dto.EmployeeRequest;
 import com.ct.nightwatch.webapi.service.dto.EmployeeSummary;
@@ -40,7 +41,8 @@ public class DefaultEmployeeService implements EmployeeService {
 
     @Override
     public Long save(EmployeeRequest employeeRequest) {
-        return employeeRepository.save(employeeMapper.toEntity(employeeRequest)).getId();
+        Employee employee = employeeMapper.toEntity(employeeRequest);
+        return employeeRepository.save(employee).getId();
     }
 
     @Override
@@ -48,7 +50,8 @@ public class DefaultEmployeeService implements EmployeeService {
         if (!employeeRepository.existsById(id))
             throw new EntityNotFoundException(id, Employee.class);
 
-        employeeRepository.save(employeeMapper.toEntity(id, employeeRequest));
+        Employee employee = employeeMapper.toEntity(id, employeeRequest);
+        employeeRepository.save(employee);
     }
 
     @Override

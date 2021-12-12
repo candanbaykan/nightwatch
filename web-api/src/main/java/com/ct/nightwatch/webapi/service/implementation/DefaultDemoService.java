@@ -1,6 +1,8 @@
-package com.ct.nightwatch.webapi.service;
+package com.ct.nightwatch.webapi.service.implementation;
 
 import com.ct.nightwatch.webapi.repository.DemoRepository;
+import com.ct.nightwatch.webapi.repository.entity.Demo;
+import com.ct.nightwatch.webapi.service.DemoService;
 import com.ct.nightwatch.webapi.service.dto.DemoRequest;
 import com.ct.nightwatch.webapi.service.dto.DemoSummary;
 import com.ct.nightwatch.webapi.service.mapper.DemoMapper;
@@ -36,7 +38,8 @@ public class DefaultDemoService implements DemoService {
 
     @Override
     public Long save(DemoRequest demoRequest) {
-        return demoRepository.save(demoMapper.toEntity(demoRequest)).getId();
+        Demo demo = demoMapper.toEntity(demoRequest);
+        return demoRepository.save(demo).getId();
     }
 
 

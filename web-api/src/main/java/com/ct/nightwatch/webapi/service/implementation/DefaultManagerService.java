@@ -1,7 +1,8 @@
-package com.ct.nightwatch.webapi.service;
+package com.ct.nightwatch.webapi.service.implementation;
 
 import com.ct.nightwatch.webapi.repository.ManagerRepository;
 import com.ct.nightwatch.webapi.repository.entity.Manager;
+import com.ct.nightwatch.webapi.service.ManagerService;
 import com.ct.nightwatch.webapi.service.dto.ManagerDetails;
 import com.ct.nightwatch.webapi.service.dto.ManagerRequest;
 import com.ct.nightwatch.webapi.service.dto.ManagerSummary;
@@ -40,7 +41,8 @@ public class DefaultManagerService implements ManagerService {
 
     @Override
     public Long save(ManagerRequest managerRequest) {
-        return managerRepository.save(managerMapper.toEntity(managerRequest)).getId();
+        Manager manager = managerMapper.toEntity(managerRequest);
+        return managerRepository.save(manager).getId();
     }
 
     @Override
@@ -48,7 +50,8 @@ public class DefaultManagerService implements ManagerService {
         if (!managerRepository.existsById(id))
             throw new EntityNotFoundException(id, Manager.class);
 
-        managerRepository.save(managerMapper.toEntity(id, managerRequest));
+        Manager manager = managerMapper.toEntity(id, managerRequest);
+        managerRepository.save(manager);
     }
 
     @Override

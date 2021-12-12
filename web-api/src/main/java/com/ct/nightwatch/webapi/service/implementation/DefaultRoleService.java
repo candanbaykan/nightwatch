@@ -1,6 +1,7 @@
-package com.ct.nightwatch.webapi.service;
+package com.ct.nightwatch.webapi.service.implementation;
 
 import com.ct.nightwatch.webapi.repository.RoleRepository;
+import com.ct.nightwatch.webapi.service.RoleService;
 import com.ct.nightwatch.webapi.service.dto.RoleSummary;
 import com.ct.nightwatch.webapi.service.mapper.RoleMapper;
 import org.springframework.stereotype.Service;
