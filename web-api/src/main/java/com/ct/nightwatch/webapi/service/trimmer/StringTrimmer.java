@@ -36,8 +36,13 @@ public class StringTrimmer {
                     })
                     .forEach(propertyDescriptor -> {
                         try {
-                            String value = (String) propertyDescriptor.getReadMethod().invoke(object);
-                            propertyDescriptor.getWriteMethod().invoke(object, value.trim());
+                            String value = Optional.ofNullable(
+                                            (String) propertyDescriptor.getReadMethod().invoke(object)
+                                    )
+                                    .map(String::trim)
+                                    .orElse(null);
+
+                            propertyDescriptor.getWriteMethod().invoke(object, value);
                         } catch (IllegalAccessException | InvocationTargetException e) {
                             throw new RuntimeException(e);
                         }
