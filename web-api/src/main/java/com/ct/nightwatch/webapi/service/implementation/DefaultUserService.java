@@ -8,6 +8,7 @@ import com.ct.nightwatch.webapi.service.dto.UserRequest;
 import com.ct.nightwatch.webapi.service.dto.UserSummary;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.UserMapper;
+import com.ct.nightwatch.webapi.service.trimmer.annotation.Trim;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -40,14 +41,14 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public Long save(UserRequest userRequest) {
+    public Long save(@Trim UserRequest userRequest) {
         User user = userMapper.toEntity(userRequest);
         return userRepository.save(user).getId();
     }
 
 
     @Override
-    public void updateById(Long id, UserRequest userRequest) {
+    public void updateById(Long id, @Trim UserRequest userRequest) {
         if (!userRepository.existsById(id))
             throw new EntityNotFoundException(id, User.class);
 
