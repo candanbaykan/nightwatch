@@ -8,6 +8,7 @@ import com.ct.nightwatch.webapi.service.dto.DepartmentRequest;
 import com.ct.nightwatch.webapi.service.dto.DepartmentSummary;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.DepartmentMapper;
+import com.ct.nightwatch.webapi.service.trimmer.annotation.Trim;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -40,13 +41,13 @@ public class DefaultDepartmentService implements DepartmentService {
     }
 
     @Override
-    public Long save(DepartmentRequest departmentRequest) {
+    public Long save(@Trim DepartmentRequest departmentRequest) {
         Department department = departmentMapper.toEntity(departmentRequest);
         return departmentRepository.save(department).getId();
     }
 
     @Override
-    public void updateById(Long id, DepartmentRequest departmentRequest) {
+    public void updateById(Long id, @Trim DepartmentRequest departmentRequest) {
         if (!departmentRepository.existsById(id))
             throw new EntityNotFoundException(id, Department.class);
 

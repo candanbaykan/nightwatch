@@ -8,6 +8,7 @@ import com.ct.nightwatch.webapi.service.dto.EmployeeRequest;
 import com.ct.nightwatch.webapi.service.dto.EmployeeSummary;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.EmployeeMapper;
+import com.ct.nightwatch.webapi.service.trimmer.annotation.Trim;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -40,13 +41,13 @@ public class DefaultEmployeeService implements EmployeeService {
     }
 
     @Override
-    public Long save(EmployeeRequest employeeRequest) {
+    public Long save(@Trim EmployeeRequest employeeRequest) {
         Employee employee = employeeMapper.toEntity(employeeRequest);
         return employeeRepository.save(employee).getId();
     }
 
     @Override
-    public void updateById(Long id, EmployeeRequest employeeRequest) {
+    public void updateById(Long id, @Trim EmployeeRequest employeeRequest) {
         if (!employeeRepository.existsById(id))
             throw new EntityNotFoundException(id, Employee.class);
 

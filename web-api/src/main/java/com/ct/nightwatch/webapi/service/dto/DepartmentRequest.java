@@ -1,5 +1,6 @@
 package com.ct.nightwatch.webapi.service.dto;
 
+import com.ct.nightwatch.webapi.service.trimmer.annotation.Trimmable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
@@ -7,6 +8,7 @@ import lombok.experimental.FieldNameConstants;
 @Getter
 @Setter
 @FieldNameConstants
+@Trimmable
 public class DepartmentRequest {
 
     private String name;

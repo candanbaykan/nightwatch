@@ -7,6 +7,7 @@ import com.ct.nightwatch.webapi.service.dto.RankRequest;
 import com.ct.nightwatch.webapi.service.dto.RankSummary;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.RankMapper;
+import com.ct.nightwatch.webapi.service.trimmer.annotation.Trim;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -39,13 +40,13 @@ public class DefaultRankService implements RankService {
     }
 
     @Override
-    public Long save(RankRequest rankRequest) {
+    public Long save(@Trim RankRequest rankRequest) {
         Rank rank = rankMapper.toEntity(rankRequest);
         return rankRepository.save(rank).getId();
     }
 
     @Override
-    public void updateById(Long id, RankRequest rankRequest) {
+    public void updateById(Long id, @Trim RankRequest rankRequest) {
         if (!rankRepository.existsById(id))
             throw new EntityNotFoundException(id, Rank.class);
 
