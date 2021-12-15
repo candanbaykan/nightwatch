@@ -33,6 +33,10 @@ public class StringTrimmer {
 
                 field.setAccessible(true);
                 Object fieldValue = field.get(object);
+
+                if (fieldValue == null)
+                    continue;
+
                 Class<?> fieldClass = fieldValue.getClass();
 
                 if (fieldClass.equals(String.class))
