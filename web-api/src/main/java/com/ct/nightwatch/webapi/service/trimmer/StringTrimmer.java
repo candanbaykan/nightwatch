@@ -12,19 +12,22 @@ public class StringTrimmer {
 
     private static final Logger logger = LoggerFactory.getLogger(StringTrimmer.class);
 
-    public static <T> void trim(T object) {
-        trim(object, object.getClass());
+    public static <T> T trim(T object) {
+        return trim(object, object.getClass());
     }
 
-    private static <T> void trim(T object, Class<?> theClass) {
+    private static <T> T trim(T object, Class<?> theClass) {
         try {
             if (object == null || theClass == null || theClass.equals(Object.class))
-                return;
+                return object;
+
+            if (object instanceof String string)
+                return (T) string.trim();
 
             trim(object, theClass.getSuperclass());
 
             if (!theClass.isAnnotationPresent(Trimmable.class))
-                return;
+                return object;
 
 
             for (Field field : theClass.getDeclaredFields()) {
@@ -39,12 +42,10 @@ public class StringTrimmer {
 
                 Class<?> fieldClass = fieldValue.getClass();
 
-                if (fieldClass.equals(String.class))
-                    field.set(object, ((String) fieldValue).trim());
-                else
-                    trim(fieldValue, fieldClass);
-
+                field.set(object, trim(fieldValue, fieldClass));
             }
+
+            return object;
         } catch (Exception e) {
             logger.error("An error occurred during trimming", e);
             throw new StringTrimmerException(e);
