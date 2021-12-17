@@ -1,6 +1,6 @@
 package com.ct.nightwatch.webapi.restcontroller.api.v1;
 
-import com.ct.nightwatch.webapi.restcontroller.api.utility.ApiUtility;
+import com.ct.nightwatch.webapi.common.utility.api.ApiUtility;
 import com.ct.nightwatch.webapi.service.OffDayService;
 import com.ct.nightwatch.webapi.service.dto.OffDayDetails;
 import com.ct.nightwatch.webapi.service.dto.OffDayRequest;

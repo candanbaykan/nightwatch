@@ -1,4 +1,4 @@
-package com.ct.nightwatch.webapi.service.trimmer.annotation;
+package com.ct.nightwatch.webapi.common.utility.trimmer.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

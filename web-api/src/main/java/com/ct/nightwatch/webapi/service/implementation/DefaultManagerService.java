@@ -8,7 +8,7 @@ import com.ct.nightwatch.webapi.service.dto.ManagerRequest;
 import com.ct.nightwatch.webapi.service.dto.ManagerSummary;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.ManagerMapper;
-import com.ct.nightwatch.webapi.service.trimmer.annotation.Trim;
+import com.ct.nightwatch.webapi.common.utility.trimmer.annotation.Trim;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 

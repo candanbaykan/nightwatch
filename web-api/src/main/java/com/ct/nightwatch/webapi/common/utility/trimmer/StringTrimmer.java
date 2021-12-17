@@ -1,8 +1,8 @@
-package com.ct.nightwatch.webapi.service.trimmer;
+package com.ct.nightwatch.webapi.common.utility.trimmer;
 
-import com.ct.nightwatch.webapi.service.trimmer.annotation.NotTrimmable;
-import com.ct.nightwatch.webapi.service.trimmer.annotation.Trimmable;
-import com.ct.nightwatch.webapi.service.trimmer.exception.StringTrimmerException;
+import com.ct.nightwatch.webapi.common.utility.trimmer.annotation.Trimmable;
+import com.ct.nightwatch.webapi.common.utility.trimmer.annotation.NotTrimmable;
+import com.ct.nightwatch.webapi.common.utility.trimmer.exception.StringTrimmerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

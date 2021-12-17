@@ -1,6 +1,6 @@
 package com.ct.nightwatch.webapi.restcontroller.api.v1;
 
-import com.ct.nightwatch.webapi.restcontroller.api.utility.ApiUtility;
+import com.ct.nightwatch.webapi.common.utility.api.ApiUtility;
 import com.ct.nightwatch.webapi.service.ManagerService;
 import com.ct.nightwatch.webapi.service.dto.ManagerDetails;
 import com.ct.nightwatch.webapi.service.dto.ManagerRequest;

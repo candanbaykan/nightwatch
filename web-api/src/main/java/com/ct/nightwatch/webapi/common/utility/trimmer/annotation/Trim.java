@@ -1,11 +1,11 @@
-package com.ct.nightwatch.webapi.service.trimmer.annotation;
+package com.ct.nightwatch.webapi.common.utility.trimmer.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.FIELD)
+@Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface NotTrimmable {
+public @interface Trim {
 }

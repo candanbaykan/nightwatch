@@ -7,7 +7,7 @@ import com.ct.nightwatch.webapi.service.dto.RankRequest;
 import com.ct.nightwatch.webapi.service.dto.RankSummary;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.RankMapper;
-import com.ct.nightwatch.webapi.service.trimmer.annotation.Trim;
+import com.ct.nightwatch.webapi.common.utility.trimmer.annotation.Trim;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 

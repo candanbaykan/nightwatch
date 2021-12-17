@@ -1,4 +1,4 @@
-package com.ct.nightwatch.webapi.service.trimmer.exception;
+package com.ct.nightwatch.webapi.common.utility.trimmer.exception;
 
 public class StringTrimmerException extends RuntimeException {
 
