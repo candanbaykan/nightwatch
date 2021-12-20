@@ -35,9 +35,10 @@ public class DefaultEmployeeService implements EmployeeService {
     }
 
     @Override
-    public Optional<EmployeeDetails> findById(Long id) {
+    public EmployeeDetails findById(Long id) {
         return employeeRepository.findDetailsById(id)
-                .map(employeeMapper::toDetails);
+                .map(employeeMapper::toDetails)
+                .orElseThrow(() -> new EntityNotFoundException(id, Employee.class));
     }
 
     @Override

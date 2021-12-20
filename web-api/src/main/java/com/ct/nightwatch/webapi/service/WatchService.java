@@ -11,7 +11,7 @@ public interface WatchService {
 
     List<WatchSummary> findAll();
 
-    Optional<WatchDetails> findById(Long id);
+    WatchDetails findById(Long id);
 
     Long save(WatchRequest watchRequest);
 

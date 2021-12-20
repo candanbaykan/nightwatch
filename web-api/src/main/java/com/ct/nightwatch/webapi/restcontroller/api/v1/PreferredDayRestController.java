@@ -29,9 +29,7 @@ public class PreferredDayRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PreferredDayDetails> getById(@PathVariable Long id) {
-        return preferredDayService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(preferredDayService.findById(id));
     }
 
     @PostMapping

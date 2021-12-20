@@ -28,9 +28,7 @@ public class RankRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<RankSummary> getById(@PathVariable Long id) {
-        return rankService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(rankService.findById(id));
     }
 
     @PostMapping

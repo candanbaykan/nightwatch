@@ -1,5 +1,6 @@
 package com.ct.nightwatch.webapi.service.implementation;
 
+import com.ct.nightwatch.webapi.common.utility.trimmer.annotation.Trim;
 import com.ct.nightwatch.webapi.repository.ManagerRepository;
 import com.ct.nightwatch.webapi.repository.entity.Manager;
 import com.ct.nightwatch.webapi.service.ManagerService;
@@ -8,12 +9,10 @@ import com.ct.nightwatch.webapi.service.dto.ManagerRequest;
 import com.ct.nightwatch.webapi.service.dto.ManagerSummary;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.ManagerMapper;
-import com.ct.nightwatch.webapi.common.utility.trimmer.annotation.Trim;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,9 +34,10 @@ public class DefaultManagerService implements ManagerService {
     }
 
     @Override
-    public Optional<ManagerDetails> findById(Long id) {
+    public ManagerDetails findById(Long id) {
         return managerRepository.findDetailsById(id)
-                .map(managerMapper::toDetails);
+                .map(managerMapper::toDetails)
+                .orElseThrow(() -> new EntityNotFoundException(id, Manager.class));
     }
 
     @Override

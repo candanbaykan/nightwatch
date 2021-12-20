@@ -29,9 +29,7 @@ public class DepartmentRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<DepartmentDetails> getById(@PathVariable Long id) {
-        return departmentService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(departmentService.findById(id));
     }
 
     @PostMapping

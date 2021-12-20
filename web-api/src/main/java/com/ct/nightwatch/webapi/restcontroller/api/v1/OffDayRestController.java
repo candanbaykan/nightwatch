@@ -29,9 +29,7 @@ public class OffDayRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<OffDayDetails> getById(@PathVariable Long id) {
-        return offDayService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(offDayService.findById(id));
     }
 
     @PostMapping

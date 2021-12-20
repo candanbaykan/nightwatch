@@ -29,9 +29,7 @@ public class WatchRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<WatchDetails> getById(@PathVariable Long id) {
-        return watchService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(watchService.findById(id));
     }
 
     @PostMapping

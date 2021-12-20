@@ -12,7 +12,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,9 +33,10 @@ public class DefaultOffDayService implements OffDayService {
     }
 
     @Override
-    public Optional<OffDayDetails> findById(Long id) {
+    public OffDayDetails findById(Long id) {
         return offDayRepository.findDetailsById(id)
-                .map(offDayMapper::toDetails);
+                .map(offDayMapper::toDetails)
+                .orElseThrow(() -> new EntityNotFoundException(id, OffDay.class));
     }
 
     @Override

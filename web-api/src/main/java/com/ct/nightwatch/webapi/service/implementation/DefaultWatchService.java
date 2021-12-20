@@ -12,7 +12,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,9 +33,10 @@ public class DefaultWatchService implements WatchService {
     }
 
     @Override
-    public Optional<WatchDetails> findById(Long id) {
+    public WatchDetails findById(Long id) {
         return watchRepository.findDetailsById(id)
-                .map(watchMapper::toDetails);
+                .map(watchMapper::toDetails)
+                .orElseThrow(() -> new EntityNotFoundException(id, Watch.class));
     }
 
     @Override

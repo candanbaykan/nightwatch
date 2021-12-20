@@ -25,9 +25,7 @@ public class RoleRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<RoleSummary> getById(@PathVariable Long id) {
-        return roleService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(roleService.findById(id));
     }
 
 }

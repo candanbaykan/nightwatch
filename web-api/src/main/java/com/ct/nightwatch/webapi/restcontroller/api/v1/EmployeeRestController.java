@@ -29,9 +29,7 @@ public class EmployeeRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeDetails> getById(@PathVariable Long id) {
-        return employeeService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(employeeService.findById(id));
     }
 
     @PostMapping
