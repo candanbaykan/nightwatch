@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ErrorCode {
 
-    UNEXPECTED_EXCEPTION(0);
+    UNEXPECTED_EXCEPTION(0),
+    ENTITY_NOT_FOUND(1);
 
     private final Integer code;
 
