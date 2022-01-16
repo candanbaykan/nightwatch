@@ -6,7 +6,7 @@ import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "preferred_day", schema = "public")
@@ -30,7 +30,7 @@ public class PreferredDay {
 
     @NotNull
     @Column(name = "date")
-    private Date date;
+    private LocalDate date;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)

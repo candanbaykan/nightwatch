@@ -23,7 +23,7 @@ public class PreferredDayRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PreferredDaySummary>> getAll() {
+    public ResponseEntity<List<PreferredDayDetails>> getAll() {
         return ResponseEntity.ok(preferredDayService.findAll());
     }
 

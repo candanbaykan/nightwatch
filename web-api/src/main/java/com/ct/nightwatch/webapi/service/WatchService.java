@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface WatchService {
 
-    List<WatchSummary> findAll();
+    List<WatchDetails> findAll();
 
     WatchDetails findById(Long id);
 

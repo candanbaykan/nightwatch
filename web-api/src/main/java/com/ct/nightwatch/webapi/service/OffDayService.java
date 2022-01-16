@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface OffDayService {
 
-    List<OffDaySummary> findAll();
+    List<OffDayDetails> findAll();
 
     OffDayDetails findById(Long id);
 

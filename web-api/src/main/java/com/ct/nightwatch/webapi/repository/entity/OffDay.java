@@ -7,7 +7,7 @@ import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "off_day", schema = "public")
@@ -31,11 +31,11 @@ public class OffDay {
 
     @NotNull
     @Column(name = "begin")
-    private Date begin;
+    private LocalDate begin;
 
     @NotNull
     @Column(name = "end")
-    private Date end;
+    private LocalDate end;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)

@@ -4,7 +4,6 @@ import com.ct.nightwatch.webapi.common.utility.api.ApiUtility;
 import com.ct.nightwatch.webapi.service.UserService;
 import com.ct.nightwatch.webapi.service.dto.UserDetails;
 import com.ct.nightwatch.webapi.service.dto.UserRequest;
-import com.ct.nightwatch.webapi.service.dto.UserSummary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +22,7 @@ public class UserRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserSummary>> getAll() {
+    public ResponseEntity<List<UserDetails>> getAll() {
         return ResponseEntity.ok(userService.findAll());
     }
 

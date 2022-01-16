@@ -23,7 +23,7 @@ public class OffDayRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<OffDaySummary>> getAll() {
+    public ResponseEntity<List<OffDayDetails>> getAll() {
         return ResponseEntity.ok(offDayService.findAll());
     }
 

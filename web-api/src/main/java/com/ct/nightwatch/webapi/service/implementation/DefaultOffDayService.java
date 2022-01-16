@@ -26,9 +26,9 @@ public class DefaultOffDayService implements OffDayService {
     }
 
     @Override
-    public List<OffDaySummary> findAll() {
+    public List<OffDayDetails> findAll() {
         return offDayRepository.findAll().stream()
-                .map(offDayMapper::toSummary)
+                .map(offDayMapper::toDetails)
                 .collect(Collectors.toList());
     }
 

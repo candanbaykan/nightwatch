@@ -6,7 +6,6 @@ import com.ct.nightwatch.webapi.repository.entity.User;
 import com.ct.nightwatch.webapi.service.UserService;
 import com.ct.nightwatch.webapi.service.dto.UserDetails;
 import com.ct.nightwatch.webapi.service.dto.UserRequest;
-import com.ct.nightwatch.webapi.service.dto.UserSummary;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.UserMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -28,9 +27,9 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public List<UserSummary> findAll() {
+    public List<UserDetails> findAll() {
         return userRepository.findAll().stream()
-                .map(userMapper::toSummary)
+                .map(userMapper::toDetails)
                 .collect(Collectors.toList());
     }
 

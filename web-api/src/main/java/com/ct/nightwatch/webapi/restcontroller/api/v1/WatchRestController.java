@@ -23,7 +23,7 @@ public class WatchRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<WatchSummary>> getAll() {
+    public ResponseEntity<List<WatchDetails>> getAll() {
         return ResponseEntity.ok(watchService.findAll());
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PreferredDayService {
 
-    List<PreferredDaySummary> findAll();
+    List<PreferredDayDetails> findAll();
 
     PreferredDayDetails findById(Long id);
 

@@ -26,9 +26,9 @@ public class DefaultWatchService implements WatchService {
     }
 
     @Override
-    public List<WatchSummary> findAll() {
+    public List<WatchDetails> findAll() {
         return watchRepository.findAll().stream()
-                .map(watchMapper::toSummary)
+                .map(watchMapper::toDetails)
                 .collect(Collectors.toList());
     }
 

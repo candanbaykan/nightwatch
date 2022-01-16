@@ -4,15 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @FieldNameConstants
 public class OffDayRequest {
 
-    private Date begin;
-    private Date end;
+    private LocalDate begin;
+    private LocalDate end;
     private Long employeeId;
 
     public OffDayRequest() {

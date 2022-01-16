@@ -29,9 +29,9 @@ public class DefaultPreferredDayService implements PreferredDayService {
     }
 
     @Override
-    public List<PreferredDaySummary> findAll() {
+    public List<PreferredDayDetails> findAll() {
         return preferredDayRepository.findAll().stream()
-                .map(preferredDayMapper::toSummary)
+                .map(preferredDayMapper::toDetails)
                 .collect(Collectors.toList());
     }
 
