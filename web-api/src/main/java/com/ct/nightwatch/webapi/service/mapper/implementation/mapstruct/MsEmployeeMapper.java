@@ -2,6 +2,7 @@ package com.ct.nightwatch.webapi.service.mapper.implementation.mapstruct;
 
 import com.ct.nightwatch.webapi.repository.entity.Employee;
 import com.ct.nightwatch.webapi.service.dto.EmployeeDetails;
+import com.ct.nightwatch.webapi.service.dto.EmployeeListItem;
 import com.ct.nightwatch.webapi.service.dto.EmployeeRequest;
 import com.ct.nightwatch.webapi.service.dto.EmployeeSummary;
 import com.ct.nightwatch.webapi.service.mapper.EmployeeMapper;
@@ -23,6 +24,11 @@ public class MsEmployeeMapper implements EmployeeMapper {
     @Override
     public EmployeeSummary toSummary(Employee employee) {
         return simpleEmployeeMapper.toSummary(employee);
+    }
+
+    @Override
+    public EmployeeListItem toListItem(Employee employee) {
+        return complexEmployeeMapper.toListItem(employee);
     }
 
     @Override

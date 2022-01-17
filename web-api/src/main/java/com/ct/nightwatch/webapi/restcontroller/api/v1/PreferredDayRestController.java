@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/preferred-days")
@@ -23,8 +24,8 @@ public class PreferredDayRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PreferredDayDetails>> getAll() {
-        return ResponseEntity.ok(preferredDayService.findAll());
+    public ResponseEntity<List<PreferredDayDetails>> getAll(@RequestParam Map<String, String> parameters) {
+        return ResponseEntity.ok(preferredDayService.findAll(parameters));
     }
 
     @GetMapping("/{id}")

@@ -2,6 +2,7 @@ package com.ct.nightwatch.webapi.service.mapper.implementation.mapstruct;
 
 import com.ct.nightwatch.webapi.repository.entity.Department;
 import com.ct.nightwatch.webapi.service.dto.DepartmentDetails;
+import com.ct.nightwatch.webapi.service.dto.DepartmentListItem;
 import com.ct.nightwatch.webapi.service.dto.DepartmentRequest;
 import com.ct.nightwatch.webapi.service.dto.DepartmentSummary;
 import com.ct.nightwatch.webapi.service.mapper.DepartmentMapper;
@@ -26,6 +27,11 @@ public class MsDepartmentMapper implements DepartmentMapper {
     @Override
     public DepartmentSummary toSummary(Department department) {
         return simpleDepartmentMapper.toSummary(department);
+    }
+
+    @Override
+    public DepartmentListItem toListItem(Department department) {
+        return complexDepartmentMapper.toListItem(department);
     }
 
     @Override

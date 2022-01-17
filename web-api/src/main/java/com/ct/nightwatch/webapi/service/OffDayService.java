@@ -5,12 +5,15 @@ import com.ct.nightwatch.webapi.service.dto.OffDayRequest;
 import com.ct.nightwatch.webapi.service.dto.OffDaySummary;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OffDayService {
 
-    List<OffDayDetails> findAll();
+    List<OffDayDetails> findAll(Map<String, String> parameters);
 
     OffDayDetails findById(Long id);
+
+    List<OffDayDetails> findByDepartmentId(Long departmentId);
 
     Long save(OffDayRequest offDayRequest);
 

@@ -5,14 +5,16 @@ import com.ct.nightwatch.webapi.repository.DepartmentRepository;
 import com.ct.nightwatch.webapi.repository.entity.Department;
 import com.ct.nightwatch.webapi.service.DepartmentService;
 import com.ct.nightwatch.webapi.service.dto.DepartmentDetails;
+import com.ct.nightwatch.webapi.service.dto.DepartmentListItem;
 import com.ct.nightwatch.webapi.service.dto.DepartmentRequest;
-import com.ct.nightwatch.webapi.service.dto.DepartmentSummary;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.DepartmentMapper;
+import com.ct.nightwatch.webapi.service.specification.DepartmentSpecification;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,9 +29,10 @@ public class DefaultDepartmentService implements DepartmentService {
     }
 
     @Override
-    public List<DepartmentSummary> findAll() {
-        return departmentRepository.findAll().stream()
-                .map(departmentMapper::toSummary)
+    public List<DepartmentListItem> findAll(Map<String, String> parameters) {
+        DepartmentSpecification specification = new DepartmentSpecification(parameters);
+        return departmentRepository.findAll(specification).stream()
+                .map(departmentMapper::toListItem)
                 .collect(Collectors.toList());
     }
 

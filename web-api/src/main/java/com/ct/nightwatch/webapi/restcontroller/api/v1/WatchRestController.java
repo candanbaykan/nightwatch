@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/watches")
@@ -23,8 +24,8 @@ public class WatchRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<WatchDetails>> getAll() {
-        return ResponseEntity.ok(watchService.findAll());
+    public ResponseEntity<List<WatchDetails>> getAll(@RequestParam Map<String, String> parameters) {
+        return ResponseEntity.ok(watchService.findAll(parameters));
     }
 
     @GetMapping("/{id}")

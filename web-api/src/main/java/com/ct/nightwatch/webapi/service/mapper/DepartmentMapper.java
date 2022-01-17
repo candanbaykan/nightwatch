@@ -2,12 +2,15 @@ package com.ct.nightwatch.webapi.service.mapper;
 
 import com.ct.nightwatch.webapi.repository.entity.Department;
 import com.ct.nightwatch.webapi.service.dto.DepartmentDetails;
+import com.ct.nightwatch.webapi.service.dto.DepartmentListItem;
 import com.ct.nightwatch.webapi.service.dto.DepartmentRequest;
 import com.ct.nightwatch.webapi.service.dto.DepartmentSummary;
 
 public interface DepartmentMapper {
 
     DepartmentSummary toSummary(Department department);
+
+    DepartmentListItem toListItem(Department department);
 
     DepartmentDetails toDetails(Department department);
 

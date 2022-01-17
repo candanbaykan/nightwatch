@@ -5,10 +5,11 @@ import com.ct.nightwatch.webapi.service.dto.UserRequest;
 import com.ct.nightwatch.webapi.service.dto.UserSummary;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
 
-    List<UserDetails> findAll();
+    List<UserDetails> findAll(Map<String, String> parameters);
 
     UserDetails findById(Long id);
 

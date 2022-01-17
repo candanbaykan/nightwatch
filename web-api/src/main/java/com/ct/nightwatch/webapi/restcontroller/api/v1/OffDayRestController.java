@@ -4,12 +4,12 @@ import com.ct.nightwatch.webapi.common.utility.api.ApiUtility;
 import com.ct.nightwatch.webapi.service.OffDayService;
 import com.ct.nightwatch.webapi.service.dto.OffDayDetails;
 import com.ct.nightwatch.webapi.service.dto.OffDayRequest;
-import com.ct.nightwatch.webapi.service.dto.OffDaySummary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/off-days")
@@ -23,8 +23,8 @@ public class OffDayRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<OffDayDetails>> getAll() {
-        return ResponseEntity.ok(offDayService.findAll());
+    public ResponseEntity<List<OffDayDetails>> getAll(@RequestParam Map<String, String> parameters) {
+        return ResponseEntity.ok(offDayService.findAll(parameters));
     }
 
     @GetMapping("/{id}")

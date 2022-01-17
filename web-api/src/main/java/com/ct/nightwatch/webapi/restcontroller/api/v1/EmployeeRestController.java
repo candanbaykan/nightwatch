@@ -3,6 +3,7 @@ package com.ct.nightwatch.webapi.restcontroller.api.v1;
 import com.ct.nightwatch.webapi.common.utility.api.ApiUtility;
 import com.ct.nightwatch.webapi.service.EmployeeService;
 import com.ct.nightwatch.webapi.service.dto.EmployeeDetails;
+import com.ct.nightwatch.webapi.service.dto.EmployeeListItem;
 import com.ct.nightwatch.webapi.service.dto.EmployeeRequest;
 import com.ct.nightwatch.webapi.service.dto.EmployeeSummary;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class EmployeeRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<EmployeeSummary>> getAll() {
+    public ResponseEntity<List<EmployeeListItem>> getAll() {
         return ResponseEntity.ok(employeeService.findAll());
     }
 

@@ -1,10 +1,9 @@
 package com.ct.nightwatch.webapi.restcontroller.api.v1;
 
 import com.ct.nightwatch.webapi.common.utility.api.ApiUtility;
+import com.ct.nightwatch.webapi.service.EmployeeService;
 import com.ct.nightwatch.webapi.service.ManagerService;
-import com.ct.nightwatch.webapi.service.dto.ManagerDetails;
-import com.ct.nightwatch.webapi.service.dto.ManagerRequest;
-import com.ct.nightwatch.webapi.service.dto.ManagerSummary;
+import com.ct.nightwatch.webapi.service.dto.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +16,11 @@ import java.util.List;
 public class ManagerRestController {
 
     private final ManagerService managerService;
+    private final EmployeeService employeeService;
 
-    public ManagerRestController(ManagerService managerService) {
+    public ManagerRestController(ManagerService managerService, EmployeeService employeeService) {
         this.managerService = managerService;
+        this.employeeService = employeeService;
     }
 
     @GetMapping
@@ -49,6 +50,11 @@ public class ManagerRestController {
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         managerService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/employees")
+    public ResponseEntity<List<EmployeeListItem>> getEmployees(@PathVariable Long id) {
+        return ResponseEntity.ok(employeeService.findByManagerId(id));
     }
 
 }

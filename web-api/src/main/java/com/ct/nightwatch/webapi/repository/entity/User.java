@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
         @NamedEntityGraph(
                 name = "UserDetails",
                 attributeNodes = {
-                        @NamedAttributeNode(User.Fields.role)
+                        @NamedAttributeNode(User.Fields.role),
                 }
         )
 })
@@ -42,6 +42,12 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     private Role role;
+
+    @OneToOne(mappedBy = Manager.Fields.user, fetch = FetchType.LAZY, optional = false)
+    private Manager manager;
+
+    @OneToOne(mappedBy = Employee.Fields.user, fetch = FetchType.LAZY, optional = false)
+    private Employee employee;
 
     public User() {
     }

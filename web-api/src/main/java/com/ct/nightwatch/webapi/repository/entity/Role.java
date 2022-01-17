@@ -2,6 +2,7 @@ package com.ct.nightwatch.webapi.repository.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Size;
 @Table(name = "role", schema = "public")
 @Getter
 @Setter
+@FieldNameConstants
 public class Role {
 
     @Id

@@ -1,17 +1,20 @@
 package com.ct.nightwatch.webapi.service.implementation;
 
 import com.ct.nightwatch.webapi.repository.PreferredDayRepository;
+import com.ct.nightwatch.webapi.repository.entity.Department;
 import com.ct.nightwatch.webapi.repository.entity.PreferredDay;
 import com.ct.nightwatch.webapi.service.PreferredDayService;
 import com.ct.nightwatch.webapi.service.dto.PreferredDayDetails;
 import com.ct.nightwatch.webapi.service.dto.PreferredDayRequest;
-import com.ct.nightwatch.webapi.service.dto.PreferredDaySummary;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
+import com.ct.nightwatch.webapi.service.mapper.DepartmentMapper;
 import com.ct.nightwatch.webapi.service.mapper.PreferredDayMapper;
+import com.ct.nightwatch.webapi.service.specification.PreferredDaySpecification;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,18 +22,21 @@ public class DefaultPreferredDayService implements PreferredDayService {
 
     private final PreferredDayRepository preferredDayRepository;
     private final PreferredDayMapper preferredDayMapper;
+    private final DepartmentMapper departmentMapper;
 
     public DefaultPreferredDayService(
             PreferredDayRepository preferredDayRepository,
-            PreferredDayMapper preferredDayMapper) {
+            PreferredDayMapper preferredDayMapper, DepartmentMapper departmentMapper) {
 
         this.preferredDayRepository = preferredDayRepository;
         this.preferredDayMapper = preferredDayMapper;
+        this.departmentMapper = departmentMapper;
     }
 
     @Override
-    public List<PreferredDayDetails> findAll() {
-        return preferredDayRepository.findAll().stream()
+    public List<PreferredDayDetails> findAll(Map<String, String> parameters) {
+        PreferredDaySpecification specification = new PreferredDaySpecification(parameters);
+        return preferredDayRepository.findAll(specification).stream()
                 .map(preferredDayMapper::toDetails)
                 .collect(Collectors.toList());
     }
@@ -40,6 +46,14 @@ public class DefaultPreferredDayService implements PreferredDayService {
         return preferredDayRepository.findDetailsById(id)
                 .map(preferredDayMapper::toDetails)
                 .orElseThrow(() -> new EntityNotFoundException(id, PreferredDay.class));
+    }
+
+    @Override
+    public List<PreferredDayDetails> findByDepartmentId(Long departmentId) {
+        Department department = departmentMapper.toEntity(departmentId);
+        return preferredDayRepository.findByEmployeeDepartment(department).stream()
+                .map(preferredDayMapper::toDetails)
+                .toList();
     }
 
     @Override

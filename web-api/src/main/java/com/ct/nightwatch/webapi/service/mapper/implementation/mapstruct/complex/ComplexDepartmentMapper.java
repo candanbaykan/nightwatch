@@ -2,6 +2,7 @@ package com.ct.nightwatch.webapi.service.mapper.implementation.mapstruct.complex
 
 import com.ct.nightwatch.webapi.repository.entity.Department;
 import com.ct.nightwatch.webapi.service.dto.DepartmentDetails;
+import com.ct.nightwatch.webapi.service.dto.DepartmentListItem;
 import com.ct.nightwatch.webapi.service.dto.DepartmentRequest;
 import com.ct.nightwatch.webapi.service.mapper.implementation.mapstruct.qualifier.IdToManager;
 import com.ct.nightwatch.webapi.service.mapper.implementation.mapstruct.simple.SimpleEmployeeMapper;
@@ -16,6 +17,8 @@ import org.mapstruct.Mapping;
         injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
 public interface ComplexDepartmentMapper {
+
+    DepartmentListItem toListItem(Department department);
 
     DepartmentDetails toDetails(Department department);
 

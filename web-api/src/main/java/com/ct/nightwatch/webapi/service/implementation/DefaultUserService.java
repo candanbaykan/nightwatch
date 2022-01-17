@@ -8,10 +8,12 @@ import com.ct.nightwatch.webapi.service.dto.UserDetails;
 import com.ct.nightwatch.webapi.service.dto.UserRequest;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.UserMapper;
+import com.ct.nightwatch.webapi.service.specification.UserSpecification;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -27,8 +29,9 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public List<UserDetails> findAll() {
-        return userRepository.findAll().stream()
+    public List<UserDetails> findAll(Map<String, String> parameters) {
+        UserSpecification specification = new UserSpecification(parameters);
+        return userRepository.findAll(specification).stream()
                 .map(userMapper::toDetails)
                 .collect(Collectors.toList());
     }

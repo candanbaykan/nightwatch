@@ -22,6 +22,13 @@ import java.util.List;
                         @NamedAttributeNode(Employee.Fields.rank),
                         @NamedAttributeNode(Employee.Fields.user)
                 }
+        ),
+        @NamedEntityGraph(
+                name = "EmployeeListItem",
+                attributeNodes = {
+                        @NamedAttributeNode(Employee.Fields.department),
+                        @NamedAttributeNode(Employee.Fields.rank)
+                }
         )
 })
 public class Employee {
