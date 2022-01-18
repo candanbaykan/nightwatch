@@ -27,7 +27,7 @@ public class DepartmentSpecification implements Specification<Department> {
         try {
             List<Predicate> predicates = new ArrayList<>();
 
-            Optional.ofNullable(parameters.get(Department.Fields.manager))
+            Optional.ofNullable(parameters.get(Department.Fields.manager + "Id"))
                     .ifPresent(parameter -> {
                         predicates.add(criteriaBuilder.equal(joinManager.get(Manager.Fields.id), parameter));
                     });

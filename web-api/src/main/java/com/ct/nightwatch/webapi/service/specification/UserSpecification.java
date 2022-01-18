@@ -31,12 +31,12 @@ public class UserSpecification implements Specification<User> {
         try {
             List<Predicate> predicates = new ArrayList<>();
 
-            Optional.ofNullable(parameters.get(User.Fields.role))
+            Optional.ofNullable(parameters.get(User.Fields.role + "Id"))
                     .ifPresent(parameter -> {
                         predicates.add(criteriaBuilder.equal(joinRole.get(Role.Fields.id), parameter));
                     });
 
-            Optional.ofNullable(parameters.get(User.Fields.manager))
+            Optional.ofNullable(parameters.get(User.Fields.manager + "Id"))
                     .ifPresent(parameter -> {
                         if (parameter.equals("null")) {
                             predicates.add(criteriaBuilder.isNull(joinManager));
@@ -46,7 +46,7 @@ public class UserSpecification implements Specification<User> {
 
                     });
 
-            Optional.ofNullable(parameters.get(User.Fields.employee))
+            Optional.ofNullable(parameters.get(User.Fields.employee + "Id"))
                     .ifPresent(parameter -> {
                         if (parameter.equals("null")) {
                             predicates.add(criteriaBuilder.isNull(joinEmployee));

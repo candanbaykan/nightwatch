@@ -27,7 +27,7 @@ public class WatchSpecification implements Specification<Watch> {
         try {
             List<Predicate> predicates = new ArrayList<>();
 
-            Optional.ofNullable(parameters.get(Watch.Fields.employee))
+            Optional.ofNullable(parameters.get(Watch.Fields.employee + "Id"))
                     .ifPresent(parameter -> {
                         predicates.add(criteriaBuilder.equal(joinEmployee.get(Employee.Fields.id), parameter));
                     });
