@@ -4,4 +4,6 @@ public interface WatchAutomationService {
 
     void run();
 
+    void demo();
+
 }

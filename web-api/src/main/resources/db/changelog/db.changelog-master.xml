@@ -38,4 +38,12 @@
 
         <comment>Created initial constraints</comment>
     </changeSet>
+    <changeSet id="5" author="candanbaykan">
+        <sqlFile path="5_security.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+
+        <comment>Security changes</comment>
+    </changeSet>
 </databaseChangeLog>

@@ -1,4 +1,4 @@
-package com.ct.nightwatch.webapi.configuration;
+package com.ct.nightwatch.webapi.common.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;

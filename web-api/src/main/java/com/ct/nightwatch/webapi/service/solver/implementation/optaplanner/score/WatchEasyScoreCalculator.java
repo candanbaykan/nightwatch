@@ -31,7 +31,7 @@ public class WatchEasyScoreCalculator implements EasyScoreCalculator<WatchPlanni
                     // If the watch is on off day
                     if (offDays.stream().anyMatch(offDay ->
                             watchDate.compareTo(offDay.get(0)) >= 0 && watchDate.compareTo(offDay.get(1)) <= 0)) {
-                        --hardScore;
+                        hardScore -= watches.size();
                     }
                 }
 

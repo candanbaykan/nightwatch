@@ -18,8 +18,8 @@ public class WatchAutomationRestController {
     }
 
     @GetMapping
-    public void runAutomation() {
-        watchAutomationService.run();
+    public void runDemo() {
+        watchAutomationService.demo();
     }
 
 }

@@ -75,6 +75,11 @@
             <artifactId>optaplanner-spring-boot-starter</artifactId>
             <version>8.15.0.Final</version>
         </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
     </dependencies>
 
     <build>

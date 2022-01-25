@@ -9,10 +9,12 @@ import com.ct.nightwatch.webapi.service.dto.ManagerRequest;
 import com.ct.nightwatch.webapi.service.dto.ManagerSummary;
 import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.ManagerMapper;
+import com.ct.nightwatch.webapi.service.specification.ManagerSpecification;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,8 +29,9 @@ public class DefaultManagerService implements ManagerService {
     }
 
     @Override
-    public List<ManagerSummary> findAll() {
-        return managerRepository.findAll().stream()
+    public List<ManagerSummary> findAll(Map<String, String> parameters) {
+        ManagerSpecification specification = new ManagerSpecification(parameters);
+        return managerRepository.findAll(specification).stream()
                 .map(managerMapper::toSummary)
                 .collect(Collectors.toList());
     }

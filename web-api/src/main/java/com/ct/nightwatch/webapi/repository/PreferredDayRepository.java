@@ -19,4 +19,8 @@ public interface PreferredDayRepository extends JpaRepository<PreferredDay, Long
     @EntityGraph("PreferredDayDetails")
     List<PreferredDay> findByEmployeeDepartment(Department department);
 
+    boolean existsByIdAndEmployeeDepartmentManagerUserUsername(Long id, String managerUsername);
+
+    boolean existsByIdAndEmployeeUserUsername(Long id, String employeeUsername);
+
 }

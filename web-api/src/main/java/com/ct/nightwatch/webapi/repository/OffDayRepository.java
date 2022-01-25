@@ -19,4 +19,8 @@ public interface OffDayRepository extends JpaRepository<OffDay, Long>, JpaSpecif
     @EntityGraph("OffDayDetails")
     List<OffDay> findByEmployeeDepartment(Department department);
 
+    boolean existsByIdAndEmployeeDepartmentManagerUserUsername(Long id, String managerUsername);
+
+    boolean existsByIdAndEmployeeUserUsername(Long id, String employeeUsername);
+
 }

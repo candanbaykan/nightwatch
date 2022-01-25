@@ -14,4 +14,9 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
     @EntityGraph("UserDetails")
     Optional<User> findDetailsById(Long id);
 
+    @EntityGraph("UserDetails")
+    Optional<User> findByUsername(String username);
+
+    boolean existsByIdAndUsername(Long id, String username);
+
 }

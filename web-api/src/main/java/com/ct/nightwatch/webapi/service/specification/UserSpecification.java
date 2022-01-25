@@ -31,6 +31,11 @@ public class UserSpecification implements Specification<User> {
         try {
             List<Predicate> predicates = new ArrayList<>();
 
+            Optional.ofNullable(parameters.get(User.Fields.username))
+                    .ifPresent(parameter -> {
+                        predicates.add(criteriaBuilder.equal(root.get(User.Fields.username), parameter));
+                    });
+
             Optional.ofNullable(parameters.get(User.Fields.role + "Id"))
                     .ifPresent(parameter -> {
                         predicates.add(criteriaBuilder.equal(joinRole.get(Role.Fields.id), parameter));

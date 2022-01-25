@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/employees")
@@ -24,8 +25,8 @@ public class EmployeeRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<EmployeeListItem>> getAll() {
-        return ResponseEntity.ok(employeeService.findAll());
+    public ResponseEntity<List<EmployeeListItem>> getAll(@RequestParam Map<String, String> parameters) {
+        return ResponseEntity.ok(employeeService.findAll(parameters));
     }
 
     @GetMapping("/{id}")

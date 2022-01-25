@@ -14,4 +14,6 @@ public interface DepartmentRepository extends JpaRepository<Department, Long>, J
     @EntityGraph("DepartmentDetails")
     Optional<Department> findDetailsById(Long id);
 
+    boolean existsByIdAndManagerUserUsername(Long id, String username);
+
 }

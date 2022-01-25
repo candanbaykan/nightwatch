@@ -11,6 +11,7 @@ import com.ct.nightwatch.webapi.service.mapper.DepartmentMapper;
 import com.ct.nightwatch.webapi.service.mapper.PreferredDayMapper;
 import com.ct.nightwatch.webapi.service.specification.PreferredDaySpecification;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +35,10 @@ public class DefaultPreferredDayService implements PreferredDayService {
     }
 
     @Override
+    @PreAuthorize("@authService.isAdmin() || " +
+            "(#parameters['employeeId'] != null && " +
+            "(@authService.isEmployeeManager(#parameters['employeeId']) || " +
+            "@authService.isEqualEmployee(#parameters['employeeId'])))")
     public List<PreferredDayDetails> findAll(Map<String, String> parameters) {
         PreferredDaySpecification specification = new PreferredDaySpecification(parameters);
         return preferredDayRepository.findAll(specification).stream()
@@ -42,6 +47,7 @@ public class DefaultPreferredDayService implements PreferredDayService {
     }
 
     @Override
+    @PreAuthorize("@authService.canViewPreferredDay(#id)")
     public PreferredDayDetails findById(Long id) {
         return preferredDayRepository.findDetailsById(id)
                 .map(preferredDayMapper::toDetails)
@@ -49,6 +55,8 @@ public class DefaultPreferredDayService implements PreferredDayService {
     }
 
     @Override
+    @PreAuthorize("@authService.isAdmin() || " +
+            "@authService.isDepartmentManager(#departmentId)")
     public List<PreferredDayDetails> findByDepartmentId(Long departmentId) {
         Department department = departmentMapper.toEntity(departmentId);
         return preferredDayRepository.findByEmployeeDepartment(department).stream()
@@ -57,12 +65,16 @@ public class DefaultPreferredDayService implements PreferredDayService {
     }
 
     @Override
+    @PreAuthorize("#preferredDayRequest != null &&" +
+            "#preferredDayRequest.employeeId != null && " +
+            "@authService.isEqualEmployee(#preferredDayRequest.employeeId)")
     public Long save(PreferredDayRequest preferredDayRequest) {
         PreferredDay preferredDay = preferredDayMapper.toEntity(preferredDayRequest);
         return preferredDayRepository.save(preferredDay).getId();
     }
 
     @Override
+    @PreAuthorize("@authService.canModifyPreferredDay(#id)")
     public void updateById(Long id, PreferredDayRequest preferredDayRequest) {
         if (!preferredDayRepository.existsById(id))
             throw new EntityNotFoundException(id, PreferredDay.class);
@@ -72,6 +84,7 @@ public class DefaultPreferredDayService implements PreferredDayService {
     }
 
     @Override
+    @PreAuthorize("@authService.canModifyPreferredDay(#id)")
     public void deleteById(Long id) {
         try {
             preferredDayRepository.deleteById(id);

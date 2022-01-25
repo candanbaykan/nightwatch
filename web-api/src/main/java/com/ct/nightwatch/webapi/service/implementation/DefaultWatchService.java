@@ -11,6 +11,7 @@ import com.ct.nightwatch.webapi.service.mapper.DepartmentMapper;
 import com.ct.nightwatch.webapi.service.mapper.WatchMapper;
 import com.ct.nightwatch.webapi.service.specification.WatchSpecification;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +32,10 @@ public class DefaultWatchService implements WatchService {
     }
 
     @Override
+    @PreAuthorize("@authService.isAdmin() || " +
+            "(#parameters['employeeId'] != null && " +
+            "@authService.isEmployeeManager(#parameters['employeeId'])) ||" +
+            "@authService.isEqualEmployee(#parameters['employeeId'])")
     public List<WatchDetails> findAll(Map<String, String> parameters) {
         WatchSpecification specification = new WatchSpecification(parameters);
         return watchRepository.findAll(specification).stream()
@@ -39,6 +44,7 @@ public class DefaultWatchService implements WatchService {
     }
 
     @Override
+    @PreAuthorize("@authService.canViewWatch(#id)")
     public WatchDetails findById(Long id) {
         return watchRepository.findDetailsById(id)
                 .map(watchMapper::toDetails)
@@ -46,6 +52,8 @@ public class DefaultWatchService implements WatchService {
     }
 
     @Override
+    @PreAuthorize("@authService.isAdmin() || " +
+            "@authService.isDepartmentManager(#departmentId)")
     public List<WatchDetails> findByDepartmentId(Long departmentId) {
         Department department = departmentMapper.toEntity(departmentId);
         return watchRepository.findByEmployeeDepartment(department).stream()
@@ -54,12 +62,16 @@ public class DefaultWatchService implements WatchService {
     }
 
     @Override
+    @PreAuthorize("@authService.isAdmin() || " +
+            "(#watchRequest != null && #watchRequest.employeeId != null && " +
+            "@authService.isEmployeeManager(#watchRequest.employeeId))")
     public Long save(WatchRequest watchRequest) {
         Watch watch = watchMapper.toEntity(watchRequest);
         return watchRepository.save(watch).getId();
     }
 
     @Override
+    @PreAuthorize("@authService.canModifyWatch(#id, #watchRequest)")
     public void updateById(Long id, WatchRequest watchRequest) {
         if (!watchRepository.existsById(id))
             throw new EntityNotFoundException(id, Watch.class);
@@ -69,6 +81,7 @@ public class DefaultWatchService implements WatchService {
     }
 
     @Override
+    @PreAuthorize("@authService.canModifyWatch(#id)")
     public void deleteById(Long id) {
         try {
             watchRepository.deleteById(id);

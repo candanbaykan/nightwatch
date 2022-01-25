@@ -18,6 +18,8 @@ import javax.validation.constraints.Size;
                 name = "UserDetails",
                 attributeNodes = {
                         @NamedAttributeNode(User.Fields.role),
+                        @NamedAttributeNode(User.Fields.manager),
+                        @NamedAttributeNode(User.Fields.employee)
                 }
         )
 })
@@ -43,10 +45,10 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @OneToOne(mappedBy = Manager.Fields.user, fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = Manager.Fields.user, fetch = FetchType.LAZY)
     private Manager manager;
 
-    @OneToOne(mappedBy = Employee.Fields.user, fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = Employee.Fields.user, fetch = FetchType.LAZY)
     private Employee employee;
 
     public User() {

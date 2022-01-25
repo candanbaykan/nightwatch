@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/managers")
@@ -24,8 +25,8 @@ public class ManagerRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ManagerSummary>> getAll() {
-        return ResponseEntity.ok(managerService.findAll());
+    public ResponseEntity<List<ManagerSummary>> getAll(@RequestParam Map<String, String> parameters) {
+        return ResponseEntity.ok(managerService.findAll(parameters));
     }
 
     @GetMapping("/{id}")

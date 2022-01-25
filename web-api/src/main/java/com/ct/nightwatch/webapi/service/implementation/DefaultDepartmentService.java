@@ -11,6 +11,7 @@ import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.DepartmentMapper;
 import com.ct.nightwatch.webapi.service.specification.DepartmentSpecification;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +30,11 @@ public class DefaultDepartmentService implements DepartmentService {
     }
 
     @Override
+    @PreAuthorize(
+            "@authService.isAdmin() || " +
+                    "(#parameters['managerId'] != null && " +
+                    "@authService.isEqualManager(#parameters['managerId']))"
+    )
     public List<DepartmentListItem> findAll(Map<String, String> parameters) {
         DepartmentSpecification specification = new DepartmentSpecification(parameters);
         return departmentRepository.findAll(specification).stream()
@@ -37,6 +43,11 @@ public class DefaultDepartmentService implements DepartmentService {
     }
 
     @Override
+    @PreAuthorize(
+            "@authService.isAdmin() || " +
+                    "@authService.isDepartmentManager(#id) || " +
+                    "@authService.isDepartmentEmployee(#id)"
+    )
     public DepartmentDetails findById(Long id) {
         return departmentRepository.findDetailsById(id)
                 .map(departmentMapper::toDetails)
@@ -44,12 +55,14 @@ public class DefaultDepartmentService implements DepartmentService {
     }
 
     @Override
+    @PreAuthorize("@authService.isAdmin()")
     public Long save(@Trim DepartmentRequest departmentRequest) {
         Department department = departmentMapper.toEntity(departmentRequest);
         return departmentRepository.save(department).getId();
     }
 
     @Override
+    @PreAuthorize("@authService.isAdmin()")
     public void updateById(Long id, @Trim DepartmentRequest departmentRequest) {
         if (!departmentRepository.existsById(id))
             throw new EntityNotFoundException(id, Department.class);
@@ -59,6 +72,7 @@ public class DefaultDepartmentService implements DepartmentService {
     }
 
     @Override
+    @PreAuthorize("@authService.isAdmin()")
     public void deleteById(Long id) {
         try {
             departmentRepository.deleteById(id);
