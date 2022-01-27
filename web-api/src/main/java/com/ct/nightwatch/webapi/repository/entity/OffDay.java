@@ -34,7 +34,7 @@ public class OffDay {
     private LocalDate begin;
 
     @NotNull
-    @Column(name = "end")
+    @Column(name = "\"end\"")
     private LocalDate end;
 
     @NotNull
