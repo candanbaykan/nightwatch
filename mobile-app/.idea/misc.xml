@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26145833333333335" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_admin.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_department.xml" value="0.18" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_departmentedit.xml" value="0.2453125" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_manager.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_manager_department.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_off_day.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_preferred_day.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_ranks.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_worker_popup.xml" value="0.336322869955157" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_worker_screen.xml" value="0.2453125" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_workerpopup.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/activity_workers.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/layout/layoud_dialog.xml" value="0.2453125" />
+        <entry key="..\:/Users/m_tay/AndroidStudioProjects/NightWatchv10/app/src/main/res/menu/mymenu.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
