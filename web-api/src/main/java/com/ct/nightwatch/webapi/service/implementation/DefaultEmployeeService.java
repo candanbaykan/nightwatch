@@ -40,7 +40,7 @@ public class DefaultEmployeeService implements EmployeeService {
             "@authService.isAdmin() || " +
                     "(#parameters['userId'] != null && " +
                     "(@authService.isUserManager(#parameters['userId']) || " +
-                    "@authService.isEqualEmployee(#parameters['userId'])))"
+                    "@authService.isEqualUser(#parameters['userId'])))"
     )
     public List<EmployeeListItem> findAll(Map<String, String> parameters) {
         EmployeeSpecification specification = new EmployeeSpecification(parameters);
