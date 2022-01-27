@@ -38,7 +38,7 @@ public class DefaultEmployeeService implements EmployeeService {
     @Override
     @PreAuthorize(
             "@authService.isAdmin() || " +
-                    "(userId = #parameters['userId'] != null && " +
+                    "(#parameters['userId'] != null && " +
                     "(@authService.isUserManager(#parameters['userId']) || " +
                     "@authService.isEqualEmployee(#parameters['userId'])))"
     )
