@@ -11,6 +11,7 @@ import com.ct.nightwatch.webapi.service.exception.EntityNotFoundException;
 import com.ct.nightwatch.webapi.service.mapper.ManagerMapper;
 import com.ct.nightwatch.webapi.service.specification.ManagerSpecification;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +30,11 @@ public class DefaultManagerService implements ManagerService {
     }
 
     @Override
+    @PreAuthorize(
+            "@authService.isAdmin() || " +
+                    "(#parameters['userId'] != null && " +
+                    "@authService.isEqualUser(#parameters['userId']))"
+    )
     public List<ManagerSummary> findAll(Map<String, String> parameters) {
         ManagerSpecification specification = new ManagerSpecification(parameters);
         return managerRepository.findAll(specification).stream()
@@ -37,6 +43,10 @@ public class DefaultManagerService implements ManagerService {
     }
 
     @Override
+    @PreAuthorize(
+            "@authService.isAdmin() || " +
+                    "@authService.isEqualManager(#id)"
+    )
     public ManagerDetails findById(Long id) {
         return managerRepository.findDetailsById(id)
                 .map(managerMapper::toDetails)
@@ -44,12 +54,14 @@ public class DefaultManagerService implements ManagerService {
     }
 
     @Override
+    @PreAuthorize("@authService.isAdmin()")
     public Long save(@Trim ManagerRequest managerRequest) {
         Manager manager = managerMapper.toEntity(managerRequest);
         return managerRepository.save(manager).getId();
     }
 
     @Override
+    @PreAuthorize("@authService.isAdmin()")
     public void updateById(Long id, @Trim ManagerRequest managerRequest) {
         if (!managerRepository.existsById(id))
             throw new EntityNotFoundException(id, Manager.class);
@@ -59,6 +71,7 @@ public class DefaultManagerService implements ManagerService {
     }
 
     @Override
+    @PreAuthorize("@authService.isAdmin()")
     public void deleteById(Long id) {
         try {
             managerRepository.deleteById(id);
