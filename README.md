@@ -26,6 +26,10 @@ After having the prerequisites, you can run the following commands in project di
 ./down.py
 ```
 
+You can visit <http://localhost:8080/swagger-ui/index.html> to view API documentation while backend is running.
+
+To build and run the mobile application, open the project in mobile-app folder with Android Studio and then press run button.
+
 ## Credits
-Mobile Development: @mtaylanibrahim\
+Mobile Development: @mtaylanibrahim  
 Backend Development: @candanbaykan
